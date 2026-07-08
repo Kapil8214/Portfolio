@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapil Jangir | Full-Stack Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Pf.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            /* overflow-x: hidden; */
+            line-height: 1.6;
+        }
+
+        /* Navbar Layout */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, .1);
+            backdrop-filter: blur(12px);
+            border-bottom: var(--border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background-color: #38bdf8;
+        }
+
+        /* Section Global Setups */
+        section {
+            padding: 100px 8% 60px 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        /* Hero Layout */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero-text .badge {
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 {
+            font-size: 54px;
+            margin: 10px 0 5px 0;
+            line-height: 1.1;
+        }
+
+        .hero-text h2 {
+            font-size: 26px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            color: var(--text-main);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Experience Timeline Card */
+        .exp-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title h3 {
+            font-size: 22px;
+            color: var(--text-main);
+        }
+
+        .exp-title p {
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
+        .exp-date {
+            color: var(--text-muted);
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .exp-body {
+            list-style-position: inside;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .exp-body li {
+            margin-bottom: 8px;
+        }
+
+        /* Skills Structure */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skills-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .skills-category h3 {
+            font-size: 18px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .tag-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag-pill {
+            background: rgba(56, 189, 248, 0.06);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tag-pill.tool {
+            background: rgba(129, 140, 248, 0.06);
+            color: var(--accent-purple);
+            border: 1px solid rgba(129, 140, 248, 0.15);
+        }
+
+        /* Projects Section Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            padding: 25px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .project-card ul {
+            list-style-type: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-card ul li {
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .project-card ul li::before {
+            content: "•";
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .p-tech {
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Credentials Section */
+        .credential-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cred-details h4 {
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .cred-details p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .cred-id {
+            font-size: 12px;
+            color: var(--accent-purple);
+            font-family: monospace;
+        }
+
+        /* Contact Details Footer Card */
+        .contact-info {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .contact-box i {
+            font-size: 24px;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .contact-box span {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Scroll Up Button Styles */
+        .scroll-up-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #0f172a;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .scroll-up-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-up-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive UI Scaling */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 5% 40px 5%;
+            }
+
+            #hero {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                margin-top: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 38px;
+            }
+
+            .hero-text h2 {
+                font-size: 20px;
+            }
+
+            .social-row,
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+
+            .scroll-up-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">&lt;Kapil.Dev /&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#hero">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-text">
+            <span class="badge">Welcome to my space</span>
+            <h1>Kapil Jangir</h1>
+            <h2>Full-Stack Web Developer</h2>
+            <p>An ambitious and detail-oriented engineering graduate transitioning into full-stack web development.
+                Possesses a strong foundation in building modern frontend and backend systems, with a proven ability to
+                solve complex technical problems and deliver clean, scalable code under production pressure.</p>
+
+            <div class="social-row">
+                <a href="https://github.com/Kapil8214" target="_blank" class="social-link"><i class="fab fa-github"></i>
+                    github.com/Kapil8214</a>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://www.linkedin.com/in/kapiljangirln/" class="btn btn-primary"><i
+                        class="fas fa-envelope"></i> Hire Me</a>
+                <a href="#projects" class="btn btn-secondary">Explore Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience & Internships</h2>
+        <div class="exp-card">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <h3>MERN Stack Intern & Developer</h3>
+                    <p>Samyak IT Solutions Pvt Ltd</p>
+                </div>
+                <div class="exp-date">Dec 2025 - May 2026</div>
+            </div>
+            <ul class="exp-body">
+                <li>Worked dynamically on live project architectures developing optimized backend APIs and responsive
+                    interface solutions.</li>
+                <li>Gained core industry hands-on experience in structured app architecture layout routing, secure
+                    authentication handling, and async state data fetching.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skills-category">
+                <h3>Backend Engineering</h3>
+                <div class="tag-pool">
+                    <span class="tag-pill">Node.js</span>
+                    <span class="tag-pill">Express.js</span>
+                    <span class="tag-pill">MongoDB</span>
+                    <span class="tag-pill">RESTful APIs</span>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Frontend & Layout</h3>
+                <div class="tag-pool">
+                    <span class="tag-pill">React.js</span>
+                    <span class="tag-pill">JavaScript (ES6+)</span>
+                    <span class="tag-pill">HTML5 & CSS3</span>
+                    <span class="tag-pill">Tailwind CSS</span>
+                    <span class="tag-pill">Bootstrap</span>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Workflows & Tools</h3>
+                <div class="tag-pool">
+                    <span class="tag-pill tool">Git & GitHub</span>
+                    <span class="tag-pill tool">Nodemailer</span>
+                    <span class="tag-pill tool">Problem Solving</span>
+                    <span class="tag-pill tool">Critical Thinking</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Technical Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <h3>Secure Gmail OTP Verification Engine</h3>
+                <div class="project-tech">
+                    <span class="p-tech">Node.js</span>
+                    <span class="p-tech">Express</span>
+                    <span class="p-tech">Nodemailer</span>
+                    <span class="p-tech">JS</span>
+                </div>
+                <ul>
+                    <li>Developed a robust backend authentication engine engineered to dispatch secure One-Time
+                        Passwords (OTPs) securely over email.</li>
+                    <li>Configured third-party server interactions seamlessly via Nodemailer layers.</li>
+                    <li>Designed precise short-lived verification token generation algorithms ensuring expiring system
+                        states.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>API Manipulation & Integration Engine</h3>
+                <div class="project-tech">
+                    <span class="p-tech">React.js</span>
+                    <span class="p-tech">Node.js</span>
+                    <span class="p-tech">MongoDB</span>
+                    <span class="p-tech">REST APIs</span>
+                </div>
+                <ul>
+                    <li>Engineered custom app modules focused heavily on high-frequency asynchronous fetching states and
+                        endpoint CRUD operations.</li>
+                    <li>Managed secure custom parsing parameters for complex incoming server JSON streams.</li>
+                    <li>Configured tightly bounded server middleware verification routes to handle client-side requests
+                        safely.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>Dynamic Smart Task App</h3>
+                <div class="project-tech">
+                    <span class="p-tech">React.js</span>
+                    <span class="p-tech">Tailwind CSS</span>
+                    <span class="p-tech">LocalStorage</span>
+                </div>
+                <ul>
+                    <li>Built a high-performance modular task-tracking dashboard utilizing state persistence hooks.</li>
+                    <li>Created client-side UI filters enabling fluid real-time item tracking.</li>
+                    <li>Styled responsive control panels using unified custom Tailwind configuration parameters.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>Interactive Calculation Dashboard</h3>
+                <div class="project-tech">
+                    <span class="p-tech">HTML5</span>
+                    <span class="p-tech">CSS3</span>
+                    <span class="p-tech">JavaScript</span>
+                    <span class="p-tech">Bootstrap</span>
+                </div>
+                <ul>
+                    <li>Designed an immediate DOM rendering mathematical evaluation canvas utility.</li>
+                    <li>Prioritized robust input data validation and parsing safety to eliminate execution handling
+                        runtime vulnerabilities.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="certifications" style="min-height: auto;">
+        <h2 class="section-title">Certifications & Credentials</h2>
+        <div class="credential-item">
+            <div class="cred-details">
+                <h4>MERN Stack Internship Verification</h4>
+                <p>Issued by Samyak IT Solutions Pvt Ltd</p>
+            </div>
+            <div class="cred-id">ID: K15122025-8214</div>
+        </div>
+        <div class="credential-item">
+            <div class="cred-details">
+                <h4>Full MERN/MEAN Stack Professional Training Certificate</h4>
+                <p>Issued by Samyak IT Solutions Pvt Ltd</p>
+            </div>
+            <div class="cred-id">ID: CERT 3675182_3</div>
+        </div>
+    </section>
+
+    <section id="contact" style="min-height: auto; margin-bottom: 60px;">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-info">
+            <div class="contact-box">
+                <i class="fas fa-phone"></i>
+                <p>+91 9829408214</p>
+                <span>Call or WhatsApp</span>
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-envelope"></i>
+                <p>kapilkjan16@gmail.com</p>
+                <span>Primary Email Address</span>
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-location-dot"></i>
+                <p>Jaipur, Rajasthan</p>
+                <span>Plot No. 94, Arawali Vihar 3rd</span>
+            </div>
+        </div>
+    </section>
+
+    <button class="scroll-up-btn" id="scrollUpBtn" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <footer>
+        <p>&copy; 2026 Kapil Jangir. Built to deliver scale.</p>
+    </footer>
+
+    <script>
+        const scrollUpBtn = document.getElementById('scrollUpBtn');
+
+        // Show button when user scrolls down 300px
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollUpBtn.classList.add('show');
+            } else {
+                scrollUpBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top when clicked
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+</body>
+
+</html>
